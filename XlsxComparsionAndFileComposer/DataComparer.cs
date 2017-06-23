@@ -21,7 +21,7 @@ namespace XlsxComparsionAndFileComposer
 
     class DataTableComparer : ICompare<DataTable>
     {
-        private DataTable _sourceOne;
+        private DataTable _sourcene;
         private DataTable _sourceTwo;
 
         public Task Compare(DataTable sourceOne, DataTable sourceTwo, string sOneKey, string sTwoKey)
