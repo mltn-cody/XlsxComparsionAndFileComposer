@@ -54,8 +54,9 @@ namespace XlsxComparsionAndFileComposer
                 }
                 cmd.Connection = objConn;
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = "SELECT * FROM [" + sheetName + "]";
+                cmd.CommandText = $"SELECT * FROM [{sheetName}]";
                 oleda = new OleDbDataAdapter(cmd);
+                Console.WriteLine(cmd.CommandText);
                 oleda.Fill(ds, "excelData");
                 dtResult = ds.Tables["excelData"];
                 objConn.Close();

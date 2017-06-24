@@ -10,6 +10,8 @@ namespace XlsxComparsionAndFileComposer.Core
         {
             Kernel.Bind<IFileReader>().To<XlsxReader>();
             Kernel.Bind<IFileWriter>().To<XlsxWriter>();
+            Kernel.Bind(typeof(ICompare<>)).To<DataTableComparer>();
+            Kernel.Bind<XlsxComparer>().ToSelf();
         }
     }
 }
