@@ -1,5 +1,6 @@
 ﻿using System;
 using Ninject.Modules;
+using XlsxComparsionAndFileComposer.Writer;
 
 namespace XlsxComparsionAndFileComposer.Core
 {
@@ -7,7 +8,8 @@ namespace XlsxComparsionAndFileComposer.Core
     {
         public override void Load()
         {
-            throw new NotImplementedException();
+            Kernel.Bind<IFileReader>().To<XlsxReader>();
+            Kernel.Bind<IFileWriter>().To<XlsxWriter>();
         }
     }
 }

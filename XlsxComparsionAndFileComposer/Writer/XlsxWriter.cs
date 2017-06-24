@@ -4,19 +4,25 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XlsxComparsionAndFileComposer.Extensions;
 
 namespace XlsxComparsionAndFileComposer.Writer
 {
-    class XlsxWriter : IFileWriter
+    /// <summary>
+    /// 
+    /// </summary>
+    public class XlsxWriter : IFileWriter
     {
-        public XlsxWriter()
+        private DataTable _source;
+
+        public void ImportSource(DataTable source)
         {
-            
+            _source = source;
         }
 
         public void Write(string fileName)
         {
-            throw new NotImplementedException();
+            _source.ExportToExcel(fileName);
         }
     }
 }

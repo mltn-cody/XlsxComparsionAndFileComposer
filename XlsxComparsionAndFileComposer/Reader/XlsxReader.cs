@@ -1,16 +1,41 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.OleDb;
+using System.IO;
 
 namespace XlsxComparsionAndFileComposer
 {
-    class XlsxReader : IFileReader
+    public class XlsxReader : IFileReader
     {
+        public List<DataTable> Collection { get; } = new List<DataTable>();
+
+
+        /// <summary>
+        /// Process all files in the directory passed in, recurse on any directories 
+        //  that are found, and process the files they contain.
+        /// </summary>
+        /// <param name="targetDirectory"></param>
+        public void ProcessDirectory(string targetDirectory)
+        {
+            // Process the list of files found in the directory.
+            string[] fileEntries = Directory.GetFiles(targetDirectory, "*.xlsx");
+            foreach (string fileName in fileEntries)
+                Collection.Add(Read(fileName));
+
+            // Recurse into subdirectories of this directory.
+            string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
+            foreach (string subdirectory in subdirectoryEntries)
+                ProcessDirectory(subdirectory);
+        }
+
         public DataTable Read(string fileName)
         {
             DataTable dtResult = null;
             int totalSheet = 0; //No of sheets on excel file  
-            using (OleDbConnection objConn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';"))
+           
+            using (OleDbConnection objConn = new OleDbConnection(@" Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + fileName + "; Extended Properties = 'Excel 8.0;HDR=YES'"))
             {
                 objConn.Open();
                 OleDbCommand cmd = new OleDbCommand();
