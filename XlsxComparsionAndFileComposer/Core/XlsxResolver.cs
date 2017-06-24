@@ -3,7 +3,7 @@ using Ninject.Modules;
 
 namespace XlsxComparsionAndFileComposer.Core
 {
-    public class CsvLoader : NinjectModule
+    public class XlsxResolver : NinjectModule
     {
         public override void Load()
         {

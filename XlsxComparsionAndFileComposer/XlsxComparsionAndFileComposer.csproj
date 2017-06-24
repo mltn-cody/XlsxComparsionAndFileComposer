@@ -57,14 +57,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\CsvLoader.cs" />
-    <Compile Include="DataComparer.cs" />
+    <Compile Include="Core\XlsxResolver.cs" />
+    <Compile Include="Comparer\DataTableComparer.cs" />
+    <Compile Include="Interfaces\ICompare.cs" />
     <Compile Include="Interfaces\IFileReader.cs" />
     <Compile Include="Interfaces\IFileWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\XlsxReader.cs" />
     <Compile Include="Writer\XlsxWriter.cs" />
+    <Compile Include="Comparer\XlsxComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
