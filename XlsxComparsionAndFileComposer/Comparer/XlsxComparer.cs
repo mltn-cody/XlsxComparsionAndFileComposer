@@ -2,7 +2,7 @@ using System.Data;
 
 namespace XlsxComparsionAndFileComposer
 {
-    class XlsxComparer
+    public class XlsxComparer
     {
         private ICompare<DataTable> _compare;
 

@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Threading.Tasks;
 using XlsxComparsionAndFileComposer.Extensions;
 
 namespace XlsxComparsionAndFileComposer.Writer
@@ -9,9 +10,20 @@ namespace XlsxComparsionAndFileComposer.Writer
     public class XlsxWriter : IFileWriter
     {
         private DataTable _source;
+        private ICompare<DataTable> Compare { get; set; }
 
-        public void ImportSource(DataTable source)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="comparer"></param>
+        public XlsxWriter(ICompare<DataTable> comparer)
         {
+            Compare = comparer;
+        }
+
+        public async Task ImportSource(DataTable source)
+        {
+            var data = await Compare.CompareAsync("", "").ConfigureAwait(false);
             _source = source;
         }
 
