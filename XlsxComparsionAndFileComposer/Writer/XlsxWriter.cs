@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using XlsxComparsionAndFileComposer.Extensions;
 
@@ -9,7 +10,8 @@ namespace XlsxComparsionAndFileComposer.Writer
     /// </summary>
     public class XlsxWriter : IFileWriter
     {
-        private DataTable _source;
+        private IEnumerable<DataTable> _sources;
+        private DataTable _exportSource;
         private ICompare<DataTable> _compare;
         private readonly ICompareFactory<DataTable> _compareFactory;
 
@@ -25,13 +27,25 @@ namespace XlsxComparsionAndFileComposer.Writer
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="fileName"></param>
-        public async Task WriteAsync(string fileName)
+        /// <param name="sources"></param>
+        /// <returns></returns>
+        public  Task ImportSourcesAsync(IEnumerable<DataTable> sources)
         {
-            var comparer = _compareFactory.CreateComparer();
-            var dataTable = await comparer.CompareAsync("", "").ConfigureAwait(false);
-            _source = dataTable;
-            _source.ExportToExcel(fileName);
+            return Task.Run(() =>_sources = sources);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="columnKeyOne"></param>
+        /// <param name="columnKeyTwo"></param>
+        public async Task WriteAsync(string fileName, string columnKeyOne, string columnKeyTwo)
+        {
+            var comparer = _compareFactory.CreateComparer(_sources);
+            var dataTable = await comparer.CompareAsync(columnKeyOne, columnKeyTwo).ConfigureAwait(false);
+            _exportSource = dataTable;
+            _exportSource.ExportToExcel(fileName);
         }
     }
 }

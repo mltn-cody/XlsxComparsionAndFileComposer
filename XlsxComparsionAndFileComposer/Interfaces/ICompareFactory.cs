@@ -1,4 +1,6 @@
-﻿namespace XlsxComparsionAndFileComposer.Writer
+﻿using System.Collections.Generic;
+
+namespace XlsxComparsionAndFileComposer.Writer
 {
     /// <summary>
     /// 
@@ -10,6 +12,6 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        ICompare<T> CreateComparer();
+        ICompare<T> CreateComparer(IEnumerable<T> sources);
     }
 }

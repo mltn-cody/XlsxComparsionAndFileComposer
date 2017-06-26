@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Data;
 using System.IO;
 using System.Reflection;
 using Ninject;
 using XlsxComparsionAndFileComposer.Core;
+using XlsxComparsionAndFileComposer.Writer;
 
 namespace XlsxComparsionAndFileComposer
 {
@@ -17,8 +19,9 @@ namespace XlsxComparsionAndFileComposer
             if (location != null)
                 reader.ProcessDirectory(new DirectoryInfo(location).Parent?.FullName + "/files");
 
-            var compare = (kernel.Get(typeof(ICompare<>)) as DataTableComparer);
             var writer = kernel.Get<IFileWriter>();
+            writer.ImportSourcesAsync(reader.Collection);
+            writer.WriteAsync("OutPut.xslx", "Creative", "TrackingID");
             
             Console.ReadLine();
         }

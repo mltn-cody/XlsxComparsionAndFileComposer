@@ -7,8 +7,14 @@ using System.IO;
 
 namespace XlsxComparsionAndFileComposer
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XlsxReader : IFileReader
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public List<DataTable> Collection { get; } = new List<DataTable>();
 
 
@@ -30,11 +36,13 @@ namespace XlsxComparsionAndFileComposer
                 ProcessDirectory(subdirectory);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public DataTable Read(string fileName)
         {
-            DataTable dtResult = null;
-            int totalSheet = 0; //No of sheets on excel file  
-           
             using (OleDbConnection objConn = new OleDbConnection(@" Provider = Microsoft.ACE.OLEDB.12.0; Data Source = " + fileName + "; Extended Properties = 'Excel 8.0;HDR=YES'"))
             {
                 objConn.Open();
@@ -56,7 +64,7 @@ namespace XlsxComparsionAndFileComposer
                         ds.Tables.Add(dt);
                     }
                 }
-                dtResult = ds.Tables[$"{sheetName}"];
+                var dtResult = ds.Tables[$"{sheetName}"];
                 objConn.Close();
                 return dtResult;  
             }
