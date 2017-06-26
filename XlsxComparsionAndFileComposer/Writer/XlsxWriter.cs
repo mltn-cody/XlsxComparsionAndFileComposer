@@ -10,25 +10,27 @@ namespace XlsxComparsionAndFileComposer.Writer
     public class XlsxWriter : IFileWriter
     {
         private DataTable _source;
-        private ICompare<DataTable> Compare { get; set; }
+        private ICompare<DataTable> _compare;
+        private readonly ICompareFactory<DataTable> _compareFactory;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="comparer"></param>
-        public XlsxWriter(ICompare<DataTable> comparer)
+        /// <param name="compareFactory"></param>
+        public XlsxWriter(ICompareFactory<DataTable> compareFactory)
         {
-            Compare = comparer;
+            _compareFactory = compareFactory;
         }
 
-        public async Task ImportSource(DataTable source)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        public async Task WriteAsync(string fileName)
         {
-            var data = await Compare.CompareAsync("", "").ConfigureAwait(false);
-            _source = source;
-        }
-
-        public void Write(string fileName)
-        {
+            var comparer = _compareFactory.CreateComparer();
+            var dataTable = await comparer.CompareAsync("", "").ConfigureAwait(false);
+            _source = dataTable;
             _source.ExportToExcel(fileName);
         }
     }

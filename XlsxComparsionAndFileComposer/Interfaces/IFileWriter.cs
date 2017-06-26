@@ -1,7 +1,12 @@
-﻿namespace XlsxComparsionAndFileComposer
+﻿using System.Threading.Tasks;
+
+namespace XlsxComparsionAndFileComposer
 {
-    interface IFileWriter
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IFileWriter
     {
-        void Write(string fileName);
+        Task WriteAsync(string fileName);
     }
 }

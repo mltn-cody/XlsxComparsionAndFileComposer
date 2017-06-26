@@ -66,12 +66,14 @@
     <Compile Include="Core\XlsxResolver.cs" />
     <Compile Include="Comparer\DataTableComparer.cs" />
     <Compile Include="Extensions\DataTableExtensions.cs" />
+    <Compile Include="Factories\CompareFactory.cs" />
     <Compile Include="Interfaces\ICompare.cs" />
     <Compile Include="Interfaces\IFileReader.cs" />
     <Compile Include="Interfaces\IFileWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader\XlsxReader.cs" />
+    <Compile Include="Interfaces\ICompareFactory.cs" />
     <Compile Include="Writer\XlsxWriter.cs" />
     <Compile Include="Comparer\XlsxComparer.cs" />
   </ItemGroup>

@@ -17,7 +17,7 @@ namespace XlsxComparsionAndFileComposer
             if (location != null)
                 reader.ProcessDirectory(new DirectoryInfo(location).Parent?.FullName + "/files");
 
-            var compare = kernel.Get(typeof(ICompare<>));
+            var compare = (kernel.Get(typeof(ICompare<>)) as DataTableComparer);
             var writer = kernel.Get<IFileWriter>();
             
             Console.ReadLine();

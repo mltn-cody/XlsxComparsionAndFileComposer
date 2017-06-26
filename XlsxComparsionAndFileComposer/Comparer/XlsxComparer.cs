@@ -6,7 +6,7 @@ namespace XlsxComparsionAndFileComposer
     {
         private ICompare<DataTable> _compare;
 
-        public XlsxComparer(ICompare<DataTable> comparer)
+        public XlsxComparer(ICompare<DataTable> comparer, IFileWriter writer)
         {
             _compare = comparer;
         }

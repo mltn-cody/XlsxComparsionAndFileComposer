@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using Ninject.Extensions.Factory;
+using Ninject.Modules;
 using XlsxComparsionAndFileComposer.Writer;
 
 namespace XlsxComparsionAndFileComposer.Core
@@ -11,6 +12,7 @@ namespace XlsxComparsionAndFileComposer.Core
             Kernel.Bind<IFileWriter>().To<XlsxWriter>();
             Kernel.Bind(typeof(ICompare<>)).To<DataTableComparer>();
             Kernel.Bind<XlsxComparer>().ToSelf();
+            Kernel.Bind(typeof(ICompareFactory<>)).ToFactory();
         }
     }
 }
