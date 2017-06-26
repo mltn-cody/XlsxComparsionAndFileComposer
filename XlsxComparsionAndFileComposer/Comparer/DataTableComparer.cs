@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -40,6 +41,7 @@ namespace XlsxComparsionAndFileComposer
                 {
                     var matchingRows = _theirData.AsEnumerable()
                         .Where(r => Regex.IsMatch(r[theirColumnKey].ToString(), row[ourDataKey].ToString()));
+                  if(!matchingRows.Any()) continue;
 
                     outputTable.Merge(matchingRows.CopyToDataTable());
                 }
