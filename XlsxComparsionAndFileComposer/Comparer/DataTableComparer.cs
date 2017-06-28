@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace XlsxComparsionAndFileComposer
@@ -29,18 +30,19 @@ namespace XlsxComparsionAndFileComposer
         /// 
         /// </summary>
         /// <param name="theirColumnKey"></param>
-        /// <param name="ourDataKey"></param>
+        /// <param name="ourColumnKey"></param>
         /// <returns></returns>
-        public Task<DataTable> CompareAsync(string theirColumnKey, string ourDataKey)
+        public Task<DataTable> CompareAsync(string theirColumnKey, string ourColumnKey)
         {
+            // Todo use data parallelism to split this task. 
             return Task.Run(() =>
             {
-                var pattern = new Regex($"{ourDataKey}");
+                var pattern = new Regex($"{ourColumnKey}");
                 var outputTable = new DataTable();
                 foreach (DataRow row in _ourData.Rows)
                 {
                     var matchingRows = _theirData.AsEnumerable()
-                        .Where(r => Regex.IsMatch(r[theirColumnKey].ToString(), row[ourDataKey].ToString()));
+                        .Where(r => Regex.IsMatch(r[theirColumnKey].ToString(), row[ourColumnKey].ToString()));
                   if(!matchingRows.Any()) continue;
 
                     outputTable.Merge(matchingRows.CopyToDataTable());
