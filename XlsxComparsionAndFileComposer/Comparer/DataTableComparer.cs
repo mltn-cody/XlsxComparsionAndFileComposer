@@ -39,17 +39,20 @@ namespace XlsxComparsionAndFileComposer
             {
                 var pattern = new Regex($"{ourColumnKey}");
                 var outputTable = new DataTable();
-                foreach (DataRow row in _ourData.Rows)
-                {
-                    var matchingRows = _theirData.AsEnumerable()
-                        .Where(r => Regex.IsMatch(r[theirColumnKey].ToString(), row[ourColumnKey].ToString()));
-                  if(!matchingRows.Any()) continue;
 
-                    outputTable.Merge(matchingRows.CopyToDataTable());
-                }
+                Parallel.ForEach(_ourData.Select(), row => LoadData(theirColumnKey, ourColumnKey, row, outputTable));
 
                 return outputTable;
             });
+        }
+
+        private void LoadData(string theirColumnKey, string ourColumnKey, DataRow row, DataTable outputTable)
+        {
+            var matchingRows = _theirData.AsEnumerable()
+                .Where(r => Regex.IsMatch(r[theirColumnKey].ToString(), row[ourColumnKey].ToString()));
+            if (!matchingRows.Any()) return;
+
+            outputTable.Merge(matchingRows.CopyToDataTable());
         }
     }
 }
