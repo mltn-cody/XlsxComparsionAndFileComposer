@@ -75,7 +75,6 @@
     <Compile Include="Reader\XlsxReader.cs" />
     <Compile Include="Interfaces\ICompareFactory.cs" />
     <Compile Include="Writer\XlsxWriter.cs" />
-    <Compile Include="Comparer\XlsxComparer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

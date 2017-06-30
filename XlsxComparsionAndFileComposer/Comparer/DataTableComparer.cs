@@ -9,6 +9,9 @@ namespace XlsxComparsionAndFileComposer
     /// <summary>
     /// 
     /// </summary>
+    /// <remarks>
+    /// https://msdn.microsoft.com/en-us/library/ff963547.aspx
+    /// </remarks>>
     public class DataTableComparer : ICompare<DataTable>
     {
         private readonly DataTable _theirData;
@@ -35,12 +38,13 @@ namespace XlsxComparsionAndFileComposer
         public Task<DataTable> CompareAsync(string theirColumnKey, string ourColumnKey)
         {
             // Todo use data parallelism to split this task. 
+            // Todo this maybe a canidate for map/reduce algorithm
             return Task.Run(() =>
             {
                 var pattern = new Regex($"{ourColumnKey}");
                 var outputTable = new DataTable();
 
-                Parallel.ForEach(_ourData.Select(), row => LoadData(theirColumnKey, ourColumnKey, row, outputTable));
+                Parallel.ForEach(_ourData.AsEnumerable(), row => LoadData(theirColumnKey, ourColumnKey, row, outputTable));
 
                 return outputTable;
             });
@@ -53,6 +57,17 @@ namespace XlsxComparsionAndFileComposer
             if (!matchingRows.Any()) return;
 
             outputTable.Merge(matchingRows.CopyToDataTable());
+        }
+
+
+        private Task Map()
+        {
+            return Task.Run(() => { });
+        }
+
+        private Task Reduce()
+        {
+            return Task.Run(() => { });
         }
     }
 }

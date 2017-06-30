@@ -12,7 +12,6 @@ namespace XlsxComparsionAndFileComposer.Writer
     {
         private IEnumerable<DataTable> _sources;
         private DataTable _exportSource;
-        private ICompare<DataTable> _compare;
         private readonly ICompareFactory<DataTable> _compareFactory;
 
         /// <summary>
