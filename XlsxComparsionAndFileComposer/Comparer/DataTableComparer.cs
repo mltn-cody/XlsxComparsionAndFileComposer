@@ -16,6 +16,7 @@ namespace XlsxComparsionAndFileComposer
     {
         private readonly DataTable _theirData;
         private readonly DataTable _ourData;
+        private readonly object syncLock = new object();
 
         /// <summary>
         /// 
@@ -41,7 +42,6 @@ namespace XlsxComparsionAndFileComposer
             // Todo this maybe a canidate for map/reduce algorithm
             return Task.Run(() =>
             {
-                var pattern = new Regex($"{ourColumnKey}");
                 var outputTable = new DataTable();
 
                 Parallel.ForEach(_ourData.AsEnumerable(), row => LoadData(theirColumnKey, ourColumnKey, row, outputTable));
@@ -56,7 +56,11 @@ namespace XlsxComparsionAndFileComposer
                 .Where(r => Regex.IsMatch(r[theirColumnKey].ToString(), row[ourColumnKey].ToString()));
             if (!matchingRows.Any()) return;
 
-            outputTable.Merge(matchingRows.CopyToDataTable());
+            lock (syncLock)
+            {
+                outputTable.Merge(matchingRows.CopyToDataTable());
+            }
+
         }
 
 
