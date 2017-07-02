@@ -38,10 +38,25 @@
     <Reference Include="CommandLine, Version=2.0.0.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
       <HintPath>..\packages\CommandLineParser20.2.0.0.0\lib\net40\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Hadoop.Client, Version=0.12.5807.28193, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Hadoop.MapReduce.0.12.5807.28193\lib\net40\Microsoft.Hadoop.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Hadoop.MapReduce, Version=0.12.5807.28193, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Hadoop.MapReduce.0.12.5807.28193\lib\net40\Microsoft.Hadoop.MapReduce.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Hadoop.WebClient, Version=0.12.5807.28193, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Hadoop.MapReduce.0.12.5807.28193\lib\net40\Microsoft.Hadoop.WebClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Management.Framework, Version=0.12.5807.28193, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Hadoop.MapReduce.0.12.5807.28193\lib\net40\Microsoft.WindowsAzure.Management.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -77,6 +92,27 @@
     <Compile Include="Writer\XlsxWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MRLib\Microsoft.Hadoop.Client.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MRLib\Microsoft.Hadoop.CombineDriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MRLib\Microsoft.Hadoop.MapDriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MRLib\Microsoft.Hadoop.MapReduce.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MRLib\Microsoft.Hadoop.ReduceDriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MRLib\Microsoft.WindowsAzure.Management.Framework.Threading.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MRLib\MRRunner.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config" />
     <Content Include="Files\OurData.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

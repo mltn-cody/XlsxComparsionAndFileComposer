@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Data;
 using System.IO;
 using System.Reflection;
 using Ninject;
 using XlsxComparsionAndFileComposer.Core;
-using XlsxComparsionAndFileComposer.Writer;
 
 namespace XlsxComparsionAndFileComposer
 {
