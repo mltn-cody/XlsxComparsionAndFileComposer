@@ -117,7 +117,6 @@
     <Content Include="Files\OurData.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Files\Combine.pdf" />
     <None Include="packages.config" />
     <Content Include="Files\TheirData.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
