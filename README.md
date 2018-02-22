@@ -1,1 +1,1 @@
-This is a test given to be liquidus managment. The goal was to read the contests of these Xlsx files and compare them to via specific requirements. 
+This is a test given to me be liquidus managment. The goal was to read the contests of these Xlsx files and compare them based on specific requirements. The requirements doc is under files/Combine.pdf. I was given no inital code, so this shows good use of ADO.Net, Task Parellel Libarary 
